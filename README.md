@@ -1,72 +1,50 @@
-# chipgptv
-benchmark on chipgptv
+# Natural language is not enough: Benchmarking multi-modal generative AI for Verilog generation
 
 
-## chipgptv protocol 
+## File Structure
 
-Instruction: You are now acting as a professional verilog programmer. You will receive two kinds of input. One is the image input, which is used to describe the connectivity among modules or the state diagram of control module. The other is the text input, which is used to describe the behavior of each module, and the function of the design. You should output the verilog code of the design.
+- benchmark
+  - advanced
+  - arithmetic
+  - digital_circuit
+- chip_draw_tool
+- img
+- src
 
-
-Prompt:
-
-- Describe the function of the design.
-- Describe what submodules the design contains.
-- Describe the functionality of each submodule in the design.
-- Give the module and submodule port list.
-
-
-
-### Model Utilization
-
-This mathematical model can be used to validate the integrity of a design's image representation and to facilitate the automatic generation of Verilog code by ensuring that all necessary connections and components are properly defined and interconnected.
-
-## GPT Usage
+## Benchmark
+benchmark folder contains 3 kinds of design, arithmetic circuit, digital circuit, and advanced circuit repectively. Each design class folder several designs, and each design contains 3 level design descriptions: simple (simple_design_description.txt), medium (medium_design description.txt), and detailed (design_description.txt) respectively. In addition, each design folder contains the image of the design (<design_name>.png), next token prediction prompts (<model_name>\_next_token_<idx>.txt), the reference design code (reference.v), the testbench code (testbench.v)
 
 
-**Alert** 
-
-1. OpenAI take cost for each generated token, please use the api key carefully.
-2. Please do not share the key publicly.
-3. You need to connect the vpn to use the api.
-
-**API Limitation**
-
-![](img/api_limit.png)
-
-**Example**
-
+## Establishment
 ```
-from openai import OpenAI
-
-client = OpenAI(api_key=<API_KEY>)
-
-response = client.chat.completions.create(
-    model="gpt-4-vision-preview",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "Implement a module of an 8 bit adder using verilog in gate level. The datapath is shown in the picture."},
-                {
-                    "type": "image_url",
-                    "image_url": <IMAGE_URL>,
-                },
-            ],
-        }
-    ],
-    max_tokens=3000,
-)
-
-print(response.choices[0])
+pip install requirements.txt
 ```
 
-## Drawback
 
-1. When the input image contains gate level circuit, the generated code is mostly not correct.
-2. When the port name in the image does not map to the port name in the text, it would generate the wrong code. 
-3. When llm meet some unfamiliar design, it would prefer to generate the code of the design which it is familiar with, but not align with the input image.
+## How to run the code
+When you want to run the code, you can simply run
+```
+python src/main.py --model_name=<model> --prompt_type=<type> --method=<method>
+```
+args:
+- model_name: gpt-4/gpt-4-vision-preview
+- prompt_type: simple/medium/complex, three levels of the design_descriptions
+- method: default/complete/predict, "default" means generate the whole verilog code, "complete" means complete the code with a snippet of the  verilog code, "predict" means predict the next token of the verilog code.
 
-## Advantage
 
-1. The gptv can deal with the inter connection between submodules
-2. The gptv can have a good understanding about fsm
+## Chip drawing tool
+chip_draw_tool folder contains the tool code that can faciliate drawing the chip. When running the code, you will get the following menu:
+
+```
+Welcome to the chip draw tool.
+What's the design name of your chip?
+Design name: <design_name>
+
+1. Add submodule
+2. Add connections between submodules
+3. Connect signal to a port
+4. Done
+```
+In this tool, you can draw the chip diagram quickly, and you only need to define the submodules and the connections among the submodules. Then the tool can automatically draw the chip diagram for you.
+
+
