@@ -19,7 +19,7 @@ benchmark folder contains 3 kinds of design, arithmetic circuit, digital circuit
 ```
 pip install requirements.txt
 ```
-
+And you need to install `iverilog` package from [here](https://bleyer.org/icarus/).
 
 ## How to run the code
 When you want to run the code, you can simply run
