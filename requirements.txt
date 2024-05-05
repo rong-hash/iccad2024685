@@ -6,3 +6,5 @@ tqdm
 pandas
 random
 subprocess
+graphviz
+typing
