@@ -12,7 +12,7 @@
 - src
 
 ## Benchmark
-benchmark folder contains 3 kinds of design, arithmetic circuit, digital circuit, and advanced circuit repectively. Each design class folder several designs, and each design contains 3 level design descriptions: simple (simple_design_description.txt), medium (medium_design description.txt), and detailed (design_description.txt) respectively. In addition, each design folder contains the image of the design (<design_name>.png), next token prediction prompts (<model_name>\_next_token_<idx>.txt), the reference design code (reference.v), the testbench code (testbench.v)
+benchmark folder contains 3 kinds of design, arithmetic circuit, digital circuit, and advanced circuit repectively. Each design class folder several designs, and each design contains 3 level design descriptions: simple (simple_design_description.txt), medium (medium_design description.txt), and detailed (design_description.txt) respectively. In addition, each design folder contains the image of the design ([design_name].png), next token prediction prompts ([model_name]\_next_token_[idx].txt), the reference design code (reference.v), the testbench code (testbench.v)
 
 
 ## Enviroment establishment
