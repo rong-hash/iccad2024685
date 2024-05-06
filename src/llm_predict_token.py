@@ -22,11 +22,11 @@ def llm_predict_token(model_name, instance, output, output_answer, iter):
             client = OpenAI(api_key=api_keys[0])
 
             # get the prompt
-            with open(f"{instance}/gptv_next_token_{iter}.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/gptv_next_token_{iter}.txt", "r", encoding='utf-8') as f:
                 gpt4v_prompt = f.read()
 
             
-            with open(f"{instance}/gpt4_next_token_{iter}.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/gpt4_next_token_{iter}.txt", "r", encoding='utf-8') as f:
                 gpt4_prompt = f.read()
             # get the image url
             img_url = f"https://raw.githubusercontent.com/rong-hash/chipgptv_img/main/{instance}.png"

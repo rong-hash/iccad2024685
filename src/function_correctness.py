@@ -40,6 +40,7 @@ for situation in os.listdir(generated_code_dir):
         # Loop through each design testbench in the design directory
         for design in os.listdir(design_base_path):
             design_path = os.path.join(design_base_path, design)
+            design_path = os.path.join("benchmark", design_path)
             testbench = os.path.join(design_path, 'testbench.v')
             correct_count = 0
             total_tests = 0

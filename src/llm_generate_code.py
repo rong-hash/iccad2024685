@@ -22,20 +22,20 @@ def llm_generate_code(model_name, instance, output, output_answer, prompt_type):
             client = OpenAI(api_key=api_keys[0])
 
             # get the prompt
-            with open(f"{instance}/simple_design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/simple_design_description.txt", "r", encoding='utf-8') as f:
                 simple_prompt = f.read()
 
-            with open(f"{instance}/medium_design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/medium_design_description.txt", "r", encoding='utf-8') as f:
                 medium_prompt = f.read()
             
-            with open(f"{instance}/design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/design_description.txt", "r", encoding='utf-8') as f:
                 complex_prompt = f.read()
 
-            with open(f"{instance}/gpt4_design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/gpt4_design_description.txt", "r", encoding='utf-8') as f:
                 gpt4_complex_prompt = f.read()
-            with open(f"{instance}/gpt4_medium_design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/gpt4_medium_design_description.txt", "r", encoding='utf-8') as f:
                 gpt4_medium_prompt = f.read()
-            with open(f"{instance}/gpt4_simple_design_description.txt", "r", encoding='utf-8') as f:
+            with open("benchmark/" + f"{instance}/gpt4_simple_design_description.txt", "r", encoding='utf-8') as f:
                 gpt4_simple_prompt = f.read()
             
             if prompt_type == "simple":
